@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <div id="paddingTop" class="container">
+        <h1> {{ user }}'s profile</h1>
+        <hr>
+        <h2>You have:</h2>
+        {% if tasksCount == 1 %}
+        <p> - {{ tasksCount }} task </p>
+        {% else %}
+        <p> - {{ tasksCount }} tasks </p>
+        {% endif %}
+
+        {% if linksCount == 1 %}
+        <p> - {{ linksCount }} site </p>
+        {% else %}
+        <p> - {{ linksCount }} sites </p>
+        {% endif %}
+
+        {% if cityCardsCount == 1 %}
+        <p> - {{ cityCardsCount }} city card </p>
+        {% else %}
+        <p> - {{ cityCardsCount }} city cards </p>
+        {% endif %}
+
+    </div>
+
+{% endblock content %}

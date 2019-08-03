@@ -1,0 +1,32 @@
+*{
+    font-family: 'Roboto Slab', serif; 
+}
+ 
+ 
+body{
+     background-image: url(static/bg.jpg);
+     background-attachment: fixed;
+     background-size: 100% auto;
+     counter-reset: cnt;
+}
+
+.counter::before {
+    counter-increment: cnt;
+    content: counter(cnt);
+}
+
+#navbar-brand{
+    padding-left:30px
+}
+ 
+#navItem{
+     color: #139187;
+}
+ 
+#paddingTop{
+     padding-top:30px;
+}
+ 
+#navItemBorder{
+     border-bottom: 1px solid black ;
+}

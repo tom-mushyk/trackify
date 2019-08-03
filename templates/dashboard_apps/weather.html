@@ -1,0 +1,55 @@
+{% extends "dashboard.html" %}
+
+{% block main %}
+    <div class="col-md" style="padding:0px; margin:0px;">
+        <table class="table">
+          <thead class="thead-dark">
+            <tr>
+              <th style="width:5%" scope="col">Id</th>
+              <th style="width:15%" scope="col">City</th>
+              <th style="width:20%" scope="col">Weather</th>
+              <th style="width:20%" scope="col">Description</th>
+                <th style="width:20%" scope="col">Temp</th>
+                <th style="width:20%" scope="col">Pressure</th>
+                <th style="width:20%" scope="col">Actions</th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for card in cards %}
+            <tr>
+              <th class="counter" scope="row"></th>
+              <td>{{ card.name }}</td>
+              <td>{{ card.main }}</td>
+                <td>{{ card.description }}</td>
+                <td>{{ card.temp }} °C</td>
+                <td>{{ card.pressure }} hPa</td>
+              <td>
+                  <form action="{{ url_for('.deleteCityCard', id=card.id) }}" method="post">
+                      <input type="submit" value="Delete" class="btn btn-danger"></input></form>
+                  </form>
+              </td>
+            </tr>
+
+            {% endfor %}
+
+             <form action="/dashboard/weather" method="post" novalidate style="max-width: 500px">
+                 {{ form.hidden_tag() }}
+            <tr>
+              <th scope="row">New</th>
+              <td colspan="5">
+                {{ form.name(size=32, class_="form-control", placeholder="city name") }}
+                {% for error in form.name.errors %}
+                <span style="color: red;">[{{ error }}]</span>
+                {% endfor %}</td>
+              <td>
+                {{ form.submit(class_="btn btn-primary") }}
+              </td>
+            </tr>
+
+            </form>
+          </tbody>
+
+        </table>
+
+    </div>
+{% endblock main %}

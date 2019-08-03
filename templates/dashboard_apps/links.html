@@ -1,0 +1,59 @@
+{% extends "dashboard.html" %}
+
+{% block main %}
+    <div class="col-md" style="padding:0px;">
+        <table class="table">
+          <thead class="thead-dark">
+            <tr>
+              <th scope="col">Id</th>
+              <th width="20%" scope="col">Site name</th>
+              <th scope="col">Link</th>
+              <th scope="col">Actions</th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for link in links %}
+            <tr>
+              <th scope="row"><img src="{{ link.domain }}" width="30px" height="30px" /></th>
+              <td>{{ link.title }}</td>
+              <td>
+                  <form style="float:left;" action="{{ url_for('redirectTo', id=link.id, title=link.title) }}" method="post">
+                      <input type="submit" value="Redirect" class="btn btn-primary" formtarget="_blank"></input></form>
+                  </form>
+                  <div style="line-height:40px;"> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{ link.url }}</div>
+              </td>
+              <td>
+                  <form action="{{ url_for('deleteLink', id=link.id, title=link.title) }}" method="post">
+                      <input type="submit" value="Delete" class="btn btn-danger"></input></form>
+                  </form>
+              </td>
+            </tr>
+            {% endfor %}
+
+            <form action="/dashboard/links" method="post" novalidate>
+                {{ form.hidden_tag() }}
+             <tr>
+              <th scope="row">New</th>
+              <td>
+                  {{ form.title(size=32, class_="form-control", placeholder="your site name") }}
+                {% for error in form.title.errors %}
+                <span style="color: red;">[{{ error }}]</span>
+                {% endfor %}</td>
+              <td>
+                  {{ form.url(size=500, class_="form-control", placeholder="your url") }}
+                {% for error in form.url.errors %}
+                <span style="color: red;">[{{ error }}]</span>
+                {% endfor %}
+
+              </td>
+              <td>
+                  {{ form.submit(class_="btn btn-primary") }}
+
+              </td>
+            </tr>
+            </form>
+          </tbody>
+        </table>
+    </div>
+</div>
+{% endblock main %}

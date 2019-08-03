@@ -1,0 +1,61 @@
+{% extends "dashboard.html" %}
+
+{% block main %}
+    <div class="col-md" style="padding:0px; margin:0px;">
+        <table class="table">
+          <thead class="thead-dark">
+            <tr>
+              <th style="width:5%" scope="col">Id</th>
+              <th style="width:25%" scope="col">Title</th>
+              <th style="width:50%" scope="col">Description</th>
+              <th style="width:20%" scope="col">Actions</th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for task in tasks %}
+            <tr>
+              <th class="counter" scope="row"></th>
+              <td>{{ task.title }}</td>
+              <td>{{ task.description }}</td>
+              <td>
+                  <form action="{{ url_for('deleteTask', id=task.id, title=task.title) }}" method="post">
+                      <input type="submit" value="Delete" class="btn btn-danger"></input></form>
+                  </form>
+              </td>
+            </tr>
+            {% endfor %}
+
+             <form action="/dashboard/tasks" method="post" novalidate style="max-width: 500px">
+                 {{ form.hidden_tag() }}
+            <tr>
+              <th scope="row">New</th>
+              <td>
+                {{ form.title(size=32, class_="form-control", placeholder="your title") }}
+                {% for error in form.title.errors %}
+                <span style="color: red;">[{{ error }}]</span>
+                {% endfor %}</td>
+              <td>
+                {{ form.description(size=500, class_="form-control", placeholder="your description") }}
+                {% for error in form.description.errors %}
+                <span style="color: red;">[{{ error }}]</span>
+                {% endfor %}
+              </td>
+              <td>
+                {{ form.submit(class_="btn btn-primary") }}
+
+              </td>
+            </tr>
+
+            </form>
+          </tbody>
+
+        </table>
+
+
+
+
+
+
+
+    </div>
+{% endblock main %}

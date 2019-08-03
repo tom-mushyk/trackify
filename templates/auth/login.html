@@ -1,0 +1,39 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div id="paddingTop" class="container">
+
+    <div class="row">
+    <div class="col-sm">
+        <h1>Sign In</h1>
+    <form action="/login" method="post" novalidate style="max-width: 500px">
+
+        {{ form.hidden_tag() }}
+        <p>
+            {{ form.username.label }} <br>
+            {{ form.username(size=32, class_="form-control") }}
+            {% for error in form.username.errors %}
+            <span style="color: red;">[{{ error }}]</span>
+            {% endfor %}
+        </p>
+        <p>
+            {{ form.password.label }} <br>
+            {{ form.password(size=32, class_="form-control") }}
+            {% for error in form.password.errors %}
+            <span style="color: red;">[{{ error }}]</span>
+            {% endfor %}
+        </p>
+        <p>
+            {{ form.submit(class_="btn btn-primary") }}
+        </p>
+    </form>
+
+    </div>
+
+    <div class="col-sm">
+       
+    </div>
+    </div>
+
+</div>
+{% endblock content %}

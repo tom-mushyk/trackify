@@ -142,7 +142,7 @@ def dashboard(app_name):
         return render_template('dashboard_apps/links.html', form=form, links=links)
 
     elif app_name == 'weather':
-        cards = CityCard.query.all()
+        cards = CityCard.query.filter_by(user_id = current_user.id)
         form = AddWeatherForm()
         appid = 'a7decb12f5f033829a2d5d0adc40c03a'
         if form.validate_on_submit():

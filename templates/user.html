@@ -3,6 +3,8 @@
 {% block content %}
     <div id="paddingTop" class="container">
         <h1> {{ user }}'s profile</h1>
+
+
         <hr>
         <h2>You have:</h2>
         {% if tasksCount == 1 %}
@@ -22,6 +24,7 @@
         {% else %}
         <p> - {{ cityCardsCount }} city cards </p>
         {% endif %}
+
 
     </div>
 

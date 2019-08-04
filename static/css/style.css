@@ -1,12 +1,9 @@
 *{
-    font-family: 'Roboto Slab', serif; 
+    font-family: 'Roboto Slab', serif;
 }
  
  
 body{
-     background-image: url(static/bg.jpg);
-     background-attachment: fixed;
-     background-size: 100% auto;
      counter-reset: cnt;
 }
 
@@ -29,4 +26,40 @@ body{
  
 #navItemBorder{
      border-bottom: 1px solid black ;
+}
+
+#signBox {
+    width:500px;
+    padding: 30px;
+    background-color: white;
+    border-radius: 25px;
+    border: 2px solid white;
+
+}
+
+.likeCounterUp{
+    font-size: 30px;
+
+}
+
+.footer{
+
+}
+
+.footer-label{
+    padding-left: 30px;
+    font-size: 10px;
+}
+
+
+.image-countUp{
+
+}
+
+.countUp{
+    font-size: 30px;
+}
+
+.label-countUp{
+
 }

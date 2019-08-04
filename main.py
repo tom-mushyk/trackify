@@ -1,4 +1,4 @@
-from flask import Flask, render_template, url_for, flash, redirect
+from flask import Flask, session, request, render_template, url_for, flash, redirect
 from forms import LoginForm, RegisterForm, AddTaskForm, AddLinkForm, AddWeatherForm
 from models import db, User, Task, Link, CityCard
 from flask_login import LoginManager, login_user, login_required, current_user, logout_user
@@ -7,6 +7,7 @@ from datetime import datetime
 from helper import getFaviconUri
 import urllib3
 import json
+from flask_avatars import Avatars
 
 
 
@@ -215,20 +216,6 @@ def deleteCityCard(id):
         flash(u'Can\'t delete this city!', 'error')
         return redirect(url_for('.dashboard', app_name="weather"))
 
-
-@app.route('/editTask/<int:id>', methods=['GET', 'POST'])
-@login_required
-def editTask(id, title):
-    try:
-        Task.query.filter_by(id=id).delete()
-        db.session.commit()
-        flash(u'Task {} edited!'.format(title), 'success')
-        return redirect(url_for('.dashboard', app_name="tasks"))
-    except:
-        flash(u'Can\'t delete task {}!'.format(title), 'success')
-        return redirect(url_for('.dashboard', app_name="tasks"))
-
-
 @app.route('/deleteLink/<int:id>/<string:title>', methods=['GET', 'POST'])
 @login_required
 def deleteLink(id, title):
@@ -254,6 +241,7 @@ def redirectTo(id, title):
         return redirect(url_for('.dashboard', app_name="links"))
 
 
-
-if __name__ == '__main__':
+if __name__== '__main__':
     app.run(debug=True)
+
+    

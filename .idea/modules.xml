@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/.idea/Findify.iml" filepath="$PROJECT_DIR$/.idea/Findify.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/Trackify.iml" filepath="$PROJECT_DIR$/.idea/Trackify.iml" />
     </modules>
   </component>
 </project>

@@ -15,18 +15,9 @@ class User(UserMixin, db.Model):
     def __repr__(self):
         return '<User {}>'.format(self.username)
 
-class Product(db.Model):
-    id = db.Column(db.Integer, primary_key=True)
-    name = db.Column(db.String(64), index=True, unique=True)
-    price = db.Column(db.String(64), index=True)
-    url = db.Column(db.String(500), index=True)
-
-    def __repr__(self):
-        return '<Product {} - {} - {} >'.format(self.id, self.name, self.price)
-
 class Task(db.Model):
     id = db.Column(db.Integer, primary_key=True)
-    title = db.Column(db.String(64), index=True, unique=True)
+    title = db.Column(db.String(64), index=True)
     description = db.Column(db.Text(), index=True)
     dateAdded = db.Column(db.DateTime, index=True)
     user_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False)
@@ -37,7 +28,7 @@ class Task(db.Model):
 
 class Link(db.Model):
     id = db.Column(db.Integer, primary_key=True)
-    title = db.Column(db.String(64), index=True, unique=True)
+    title = db.Column(db.String(64), index=True)
     url = db.Column(db.String(500), index=True)
     domain = db.Column(db.String(500))
     user_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False)
@@ -47,7 +38,7 @@ class Link(db.Model):
 
 class CityCard(db.Model):
     id = db.Column(db.Integer, primary_key=True)
-    name = db.Column(db.String(64), unique=True)
+    name = db.Column(db.String(64))
     main = db.Column(db.String(64))
     description = db.Column(db.String(64))
     temp = db.Column(db.Integer)

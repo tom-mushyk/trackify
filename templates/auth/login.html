@@ -1,39 +1,42 @@
 {% extends "base.html" %}
 
 {% block content %}
-<div id="paddingTop" class="container">
+<div id="paddingTop" class="jumbotron jumbotron-fluid" style="height: 550px; background-image:url(static/bgrock.jpg); background-size:100% 700px;">
+        <div class="container">
+                <div id="signBox">
+                    <h1>Sign In</h1>
+                    <hr>
+            <form action="/login" method="post" novalidate style="max-width: 500px">
 
-    <div class="row">
-    <div class="col-sm">
-        <h1>Sign In</h1>
-    <form action="/login" method="post" novalidate style="max-width: 500px">
+                {{ form.hidden_tag() }}
+                <p>
+                    {{ form.username.label }} <br>
+                    {{ form.username(size=32, class_="form-control") }}
+                    {% for error in form.username.errors %}
+                    <span style="color: red;">[{{ error }}]</span>
+                    {% endfor %}
+                </p>
+                <p>
+                    {{ form.password.label }} <br>
+                    {{ form.password(size=32, class_="form-control") }}
+                    {% for error in form.password.errors %}
+                    <span style="color: red;">[{{ error }}]</span>
+                    {% endfor %}
+                </p>
+                <p>
+                    {{ form.submit(class_="btn btn-primary") }}
+                </p>
+            </form>
 
-        {{ form.hidden_tag() }}
-        <p>
-            {{ form.username.label }} <br>
-            {{ form.username(size=32, class_="form-control") }}
-            {% for error in form.username.errors %}
-            <span style="color: red;">[{{ error }}]</span>
-            {% endfor %}
-        </p>
-        <p>
-            {{ form.password.label }} <br>
-            {{ form.password(size=32, class_="form-control") }}
-            {% for error in form.password.errors %}
-            <span style="color: red;">[{{ error }}]</span>
-            {% endfor %}
-        </p>
-        <p>
-            {{ form.submit(class_="btn btn-primary") }}
-        </p>
-    </form>
+            </div>
 
-    </div>
 
-    <div class="col-sm">
-       
-    </div>
-    </div>
+                </div>
+
+            </div>
 
 </div>
+
+
+
 {% endblock content %}

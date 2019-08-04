@@ -1,24 +1,41 @@
 {% extends "base.html" %}
 
 {% block content %}
-<div id="paddingTop" class="container">
-  <div class="row" style="">
-    <div class="col-sm" style="color: black;">
-      <h2>Who we are?</h2>
-        Don't waste time on tracking things in web on your own. Hire us!
+<div class="jumbotron jumbotron-fluid" style="background-size: cover; background-image: url(static/about_pic.jpg);">
+    <div class="container">
+        <h2 class="display-4" style="color: #F4F4ED;">Make your life easier with <span style="color: #17E89F; borde">Trackify</span></span></h2>
+        <p class="lead" style="color: #F4F4ED;">With Trackify you can save a lot of time. </p>
+        <hr class="my-4">
+        <a href="{{ url_for('.register') }}" class="btn btn-primary btn-lg" style="background-color: #17E89F; border-color: #17E89F" href="#" role="button">Start for free</a>
+    </div>
+</div>
+<div class="row" style="width:100%; margin:0px; margin-bottom: 20px">
+    <div class="col" align="center">
+        <div class="image-countUp"><img src="static/aboutIcons/icons8-person-50.png"/></div>
+        <div class="countUp">1023</div>
+        <div class="label-countUp">Clients</div>
+    </div>
+    <div class="col" align="center">
+        <div class="image-countUp"><img src="static/aboutIcons/icons8-worker-50.png"/></div>
+        <div class="countUp">240</div>
+        <div class="label-countUp">Workers</div>
+    </div>
+    <div class="col" align="center">
+        <div class="image-countUp"><img src="static/aboutIcons/icons8-building-50.png"/></div>
+        <div class="countUp">5</div>
+        <div class="label-countUp">Headquarters</div>
+    </div>
+    <div class="col" align="center">
+        <div class="image-countUp"><img src="static/aboutIcons/icons8-clock-50.png"/></div>
+        <div class="countUp">30000</div>
+        <div class="label-countUp">Saved minutes</div>
 
     </div>
-    <div class="col-sm" style="color: white;">
-      <h2>What Trackify can do?</h2>
-        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus sit amet accumsan nibh, sed convallis libero. Cras gravida non justo at lobortis. Nullam sagittis non dolor vitae blandit. Sed euismod, nulla a aliquet aliquet, augue erat imperdiet enim, a egestas metus nibh sed justo. Pellentesque id consequat ante. Sed eget lectus in mi sollicitudin pretium. Nam luctus lacus at ultrices maximus. Proin auctor pretium felis vel pulvinar. Ut at sapien dolor. Pellentesque sodales mollis sem, in lobortis ligula porta tempor. In sodales in massa pharetra convallis.
+</div>
 
-Nullam dapibus nunc ac nulla porta, ac mattis magna egestas. Morbi vitae ex condimentum, commodo enim at, imperdiet nisi. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Sed arcu risus, consequat ac fringilla non, vehicula sit amet sapien. In volutpat, eros eget dictum egestas, mi leo fringilla dui, vel hendrerit est lorem a ex. Praesent id sem id ligula tristique egestas. Etiam tincidunt justo eu purus porttitor, non varius nulla auctor. Curabitur pellentesque felis magna, id malesuada libero efficitur eget. Integer rhoncus mollis orci, ac tristique neque molestie at. Nam est ante, mattis ac lacinia eu, commodo et ex. In lacinia et quam a aliquam.</p>
-    </div>
-    <div class="col-sm" style="color: #139187;">
-      <h2>Mission</h2>
-        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus sit amet accumsan nibh, sed convallis libero. Cras gravida non justo at lobortis. Nullam sagittis non dolor vitae blandit. Sed euismod, nulla a aliquet aliquet, augue erat imperdiet enim, a egestas metus nibh sed justo. Pellentesque id consequat ante. Sed eget lectus in mi sollicitudin pretium. Nam luctus lacus at ultrices maximus. Proin auctor pretium felis vel pulvinar. Ut at sapien dolor. Pellentesque sodales mollis sem, in lobortis ligula porta tempor. In sodales in massa pharetra convallis.
-
-Nullam dapibus nunc ac nulla porta, ac mattis magna egestas. Morbi vitae ex condimentum, commodo enim at, imperdiet nisi. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Sed arcu risus, consequat ac fringilla non, vehicula sit amet sapien. In volutpat, eros eget dictum egestas, mi leo fringilla dui, vel hendrerit est lorem a ex. Praesent id sem id ligula tristique egestas. Etiam tincidunt justo eu purus porttitor, non varius nulla auctor. Curabitur pellentesque felis magna, id malesuada libero efficitur eget. Integer rhoncus mollis orci, ac tristique neque molestie at. Nam est ante, mattis ac lacinia eu, commodo et ex. In lacinia et quam a aliquam.</p>
-    </div>
-  </div>
+<script type="text/javascript">
+    $(".countUp").counterUp({delay:10, time:1000});
+</script>
 {% endblock content %}
+
+

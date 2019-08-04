@@ -29,7 +29,7 @@ body{
 }
 
 #signBox {
-    width:500px;
+    max-width:500px;
     padding: 30px;
     background-color: white;
     border-radius: 25px;

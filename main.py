@@ -96,98 +96,103 @@ def user(username):
 @login_required
 def dashboard(app_name):
 
-    if app_name == 'tasks':
-        form = AddTaskForm()
-        tasks = Task.query.filter_by(user_id = current_user.id)
-        print(current_user.id)
-        if form.validate_on_submit():
-            task = Task()
-            task.title = form.title.data
-            task.description = form.description.data
-            task.dateAdded = datetime.utcnow()
-            task.user_id = current_user.id
+    if current_user.is_authenticated == True:
 
-            print(task)
+        if app_name == 'tasks':
+            form = AddTaskForm()
+            tasks = Task.query.filter_by(user_id = current_user.id)
+            print(current_user.id)
+            if form.validate_on_submit():
+                task = Task()
+                task.title = form.title.data
+                task.description = form.description.data
+                task.dateAdded = datetime.utcnow()
+                task.user_id = current_user.id
 
-            try:
-                db.session.add(task)
-                db.session.commit()
-                flash(u'Task {} Added!'.format(task.title), 'success')
-                return redirect(url_for('.dashboard', app_name="tasks"))
-
-            except:
-                flash(u'Cant add this task', 'error')
-                return redirect(url_for('.dashboard', app_name="tasks"))
-        return render_template('dashboard_apps/tasks.html', form=form, tasks=tasks)
-
-    elif app_name == 'links':
-        form = AddLinkForm()
-        links = Link.query.filter_by(user_id = current_user.id)
-        if form.validate_on_submit():
-            link = Link()
-            link.title = form.title.data
-            link.url = form.url.data
-            link.domain = getFaviconUri(link.url)
-            link.user_id = current_user.id
-
-            try:
-                db.session.add(link)
-                db.session.commit()
-                flash(u'Site {} Added!'.format(link.title), 'success')
-                return redirect(url_for('.dashboard', app_name="links"))
-
-            except:
-                flash(u'Cant add link to {}'.format(link.title), 'error')
-                return redirect(url_for('.dashboard', app_name="links"))
-        return render_template('dashboard_apps/links.html', form=form, links=links)
-
-    elif app_name == 'weather':
-        cards = CityCard.query.filter_by(user_id = current_user.id)
-        form = AddWeatherForm()
-        appid = 'a7decb12f5f033829a2d5d0adc40c03a'
-        if form.validate_on_submit():
-            cityCard = CityCard()
-            cityName = form.name.data
-            http = urllib3.PoolManager()
-            r = http.request('GET',
-                                 'api.openweathermap.org/data/2.5/weather?q={}'.format(cityName) + '&APPID={}'.format(
-                                     appid))
-
-
-            if r.status != 404:
-                x = json.loads(r.data)
-                weather = x['weather']
-                main = x['main']
-
-                cityCard.name = form.name.data
-                for item in weather:
-                    print(item)
-                print (item['main'])
-
-                cityCard.main = item['main']
-                cityCard.description = item['description']
-
-                mainTemp = round(((main['temp'])-273.15), 1)
-                cityCard.temp = mainTemp
-                cityCard.pressure = main['pressure']
-                cityCard.user_id = current_user.id
-
+                print(task)
 
                 try:
-                    db.session.add(cityCard)
+                    db.session.add(task)
                     db.session.commit()
-                    flash(u'City {} added!'.format(cityCard.name), 'success')
-                    return redirect(url_for('.dashboard', app_name="weather"))
+                    flash(u'Task {} Added!'.format(task.title), 'success')
+                    return redirect(url_for('.dashboard', app_name="tasks"))
 
                 except:
-                    flash(u'Can\'t add city {}'.format(cityCard.name), 'error')
+                    flash(u'Cant add this task', 'error')
+                    return redirect(url_for('.dashboard', app_name="tasks"))
+            return render_template('dashboard_apps/tasks.html', form=form, tasks=tasks)
+
+        elif app_name == 'links':
+            form = AddLinkForm()
+            links = Link.query.filter_by(user_id = current_user.id)
+            if form.validate_on_submit():
+                link = Link()
+                link.title = form.title.data
+                link.url = form.url.data
+                link.domain = getFaviconUri(link.url)
+                link.user_id = current_user.id
+
+                try:
+                    db.session.add(link)
+                    db.session.commit()
+                    flash(u'Site {} Added!'.format(link.title), 'success')
+                    return redirect(url_for('.dashboard', app_name="links"))
+
+                except:
+                    flash(u'Cant add link to {}'.format(link.title), 'error')
+                    return redirect(url_for('.dashboard', app_name="links"))
+            return render_template('dashboard_apps/links.html', form=form, links=links)
+
+        elif app_name == 'weather':
+            cards = CityCard.query.filter_by(user_id = current_user.id)
+            form = AddWeatherForm()
+            appid = 'a7decb12f5f033829a2d5d0adc40c03a'
+            if form.validate_on_submit():
+                cityCard = CityCard()
+                cityName = form.name.data
+                http = urllib3.PoolManager()
+                r = http.request('GET',
+                                     'api.openweathermap.org/data/2.5/weather?q={}'.format(cityName) + '&APPID={}'.format(
+                                         appid))
+
+
+                if r.status != 404:
+                    x = json.loads(r.data)
+                    weather = x['weather']
+                    main = x['main']
+
+                    cityCard.name = form.name.data
+                    for item in weather:
+                        print(item)
+                    print (item['main'])
+
+                    cityCard.main = item['main']
+                    cityCard.description = item['description']
+
+                    mainTemp = round(((main['temp'])-273.15), 1)
+                    cityCard.temp = mainTemp
+                    cityCard.pressure = main['pressure']
+                    cityCard.user_id = current_user.id
+
+
+                    try:
+                        db.session.add(cityCard)
+                        db.session.commit()
+                        flash(u'City {} added!'.format(cityCard.name), 'success')
+                        return redirect(url_for('.dashboard', app_name="weather"))
+
+                    except:
+                        flash(u'Can\'t add city {}'.format(cityCard.name), 'error')
+                        return redirect(url_for('.dashboard', app_name="weather"))
+
+                else:
+                    flash(u'City {} doesn\'t exist'.format(cityCard.name), 'error')
                     return redirect(url_for('.dashboard', app_name="weather"))
 
-            else:
-                flash(u'City {} doesn\'t exist'.format(cityCard.name), 'error')
-                return redirect(url_for('.dashboard', app_name="weather"))
+            return render_template('dashboard_apps/weather.html', form=form, cards=cards)
 
-        return render_template('dashboard_apps/weather.html', form=form, cards=cards)
+    else:
+        return redirect(url_for('.login'))
 
 @app.route('/deleteTask/<int:id>/', methods=['GET', 'POST'])
 @login_required

@@ -33,9 +33,7 @@ body{
     width: 100%;
 }
 
-.nav-link {
 
-}
 
 @media (max-width: 600px){
     #signBox {
@@ -66,9 +64,6 @@ body{
 
 }
 
-.footer{
-
-}
 
 .footer-label{
     padding-left: 30px;

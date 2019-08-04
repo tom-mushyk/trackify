@@ -29,7 +29,7 @@ def load_user(user_id):
 @app.route('/login', methods=['GET', 'POST'])
 def login():
     if current_user.is_authenticated == True:
-        return redirect(url_for('.user', username=current_user.username))
+        return redirect(url_for('.user'))
 
     else:
         form = LoginForm()
@@ -37,7 +37,7 @@ def login():
             checkedUser = User.query.filter_by(username=form.username.data, password_hash=form.password.data).first()
             if checkedUser is not None:
                 login_user(checkedUser)
-                return redirect(url_for('.user', username=current_user.username))
+                return redirect(url_for('.user'))
             else:
                 flash(u'Wrong password!'.format(form.username.data), 'error')
                 return redirect(url_for('.login'))
@@ -55,7 +55,7 @@ def logout():
 @app.route('/register', methods=['GET', 'POST'])
 def register():
     if current_user.is_authenticated == True:
-        return redirect(url_for('.user', username=current_user.username))
+        return redirect(url_for('.user'))
     else:
         form = RegisterForm()
         if form.validate_on_submit():
@@ -79,18 +79,18 @@ def register():
 @app.route('/about')
 def about():
     if current_user.is_authenticated == True:
-        return redirect(url_for('.user', username=current_user.username))
+        return redirect(url_for('.user'))
     else:
         return render_template('about.html')
 
 
-@app.route('/user/<string:username>')
+@app.route('/user/')
 @login_required
-def user(username):
+def user():
         tasksCount = Task.query.filter_by(user_id = current_user.id).count()
         linksCount = Link.query.filter_by(user_id = current_user.id).count()
         cityCardsCount = CityCard.query.filter_by(user_id=current_user.id).count()
-        return render_template('user.html', user = username, tasksCount = tasksCount, linksCount = linksCount, cityCardsCount = cityCardsCount)
+        return render_template('user.html', user = current_user.username, tasksCount = tasksCount, linksCount = linksCount, cityCardsCount = cityCardsCount)
 
 @app.route('/dashboard/<app_name>', methods=['GET', 'POST'])
 @login_required

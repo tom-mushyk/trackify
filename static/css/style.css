@@ -25,7 +25,16 @@ body{
 }
  
 #navItemBorder{
-     border-bottom: 1px solid black ;
+
+}
+
+.navbar-nav {
+    flex-direction: row;
+    width: 100%;
+}
+
+.nav-link {
+
 }
 
 @media (max-width: 600px){

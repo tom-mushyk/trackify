@@ -7,7 +7,6 @@ from datetime import datetime
 from helper import getFaviconUri
 import urllib3
 import json
-from flask_avatars import Avatars
 
 
 

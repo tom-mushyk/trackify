@@ -28,7 +28,18 @@ body{
      border-bottom: 1px solid black ;
 }
 
-#signBox {
+@media (max-width: 600px){
+    #signBox {
+    margin: auto auto;
+    padding: 30px;
+    background-color: white;
+    border-radius: 25px;
+    border: 2px solid white;
+
+}
+}
+@media (min-width: 600px){
+    #signBox {
     max-width:500px;
     padding: 30px;
     background-color: white;
@@ -36,6 +47,10 @@ body{
     border: 2px solid white;
 
 }
+}
+
+
+
 
 .likeCounterUp{
     font-size: 30px;

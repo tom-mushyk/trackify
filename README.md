@@ -1,7 +1,7 @@
 # Trackify - app that lets you track everything
 
 App still in development.
-Heroku link: https://ancient-retreat-32517.herokuapp.com/login
+Heroku link: https://ancient-retreat-32517.herokuapp.com/about
 
 ### Todo:
 - more advanced user page
